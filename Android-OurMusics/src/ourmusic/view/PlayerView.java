@@ -1,16 +1,18 @@
 package ourmusic.view;
 
 import ourmusic.androidapp.R;
-import android.os.Bundle;
+import ourmusic.controler.PlayerControler;
 import android.app.Activity;
-import android.view.Menu;
+import android.os.Bundle;
 
-public class MainActivity extends Activity {
+public class PlayerView extends Activity {
+	
+	private PlayerControler player_controler; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
-
+	
 }

@@ -1,5 +1,6 @@
-package ourmusic.androidapp;
+package ourmusic.view;
 
+import ourmusic.androidapp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;

@@ -1,11 +1,9 @@
 package ourmusic.model;
 
-import java.io.ByteArrayOutputStream;
-
 public interface SoundManager {
 	
-	public ByteArrayOutputStream record();
-	public void play(ByteArrayOutputStream baos);
+	public byte[] record();
+	public void play(byte[] baos);
 	public void stop();
 	public void pause();
 

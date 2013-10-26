@@ -8,7 +8,6 @@ public class PlayerControler {
 	public Player player;
 
 	public PlayerControler(Musica musica) {	
-		this.player = new Player(musica);
 	}
 	
 	

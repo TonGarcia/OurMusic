@@ -15,7 +15,7 @@ import android.media.MediaRecorder;
 public class Player implements SoundManager {
 
 	private static final int RECORDER_SAMPLERATE = 44100;
-	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
+	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_STEREO;
 	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
 	private AudioRecord recorder = null;
 	private int bufferSize;
@@ -23,7 +23,7 @@ public class Player implements SoundManager {
 	@Override
 	public byte[] record() {
 		bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
-				AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+				RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT);
 		System.out.println("buffer size: "+bufferSize);
 		// Instanciando array de bytes
 		byte data[] = new byte[bufferSize];

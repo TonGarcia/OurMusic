@@ -1,15 +1,10 @@
 package ourmusic.model;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.Pipe.SourceChannel;
-
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
 import android.media.AudioTrack;
-import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 
 public class Player implements SoundManager {
@@ -19,12 +14,13 @@ public class Player implements SoundManager {
 	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
 	private AudioRecord recorder = null;
 	private int bufferSize;
+	private boolean stopFlag = false;
+	private byte[] songInBytes = null;
 
 	@Override
-	public byte[] record() {
+	public void record() {
 		bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
 				RECORDER_CHANNELS, AudioFormat.ENCODING_PCM_16BIT);
-		System.out.println("buffer size: "+bufferSize);
 		// Instanciando array de bytes
 		byte data[] = new byte[bufferSize];
 		// Inicializando AudioRecord
@@ -45,15 +41,10 @@ public class Player implements SoundManager {
 		System.out.println("recorder.getState: " + i);
 		if (i == 1) {
 			recorder.startRecording();
-			System.out.println("recorder instanciado!!!");
 		}
 
-		long tempoInicio = System.currentTimeMillis();
-		long tempoDecorrido = 0;
-		while (tempoDecorrido <= 4000) {
+		while (stopFlag == false) {
 			int result = recorder.read(data, 0, data.length);
-			System.out.println("data.length: " + data.length);
-			System.out.println("result: " + result);
 			if (result == AudioRecord.ERROR_INVALID_OPERATION) {
 				throw new RuntimeException();
 			} else if (result == AudioRecord.ERROR_BAD_VALUE) {
@@ -61,31 +52,35 @@ public class Player implements SoundManager {
 			} else {
 				baos.write(data, 0, result);
 			}
-			tempoDecorrido = System.currentTimeMillis() - tempoInicio;
 		}
 
 		recorder.stop();
 		recorder.release();
 		recorder = null;
 
-		return baos.toByteArray();
-
+		stopFlag = false;
+		
+		songInBytes = baos.toByteArray();
 	}
 
 	@Override
-	public void play(byte[] somEmBytes) {
-		AudioTrack at = new AudioTrack(AudioManager.STREAM_MUSIC,
-				RECORDER_SAMPLERATE, RECORDER_CHANNELS,
-				RECORDER_AUDIO_ENCODING, somEmBytes.length, AudioTrack.MODE_STATIC);
-		at.write(somEmBytes, 0, somEmBytes.length);
-		at.play();
-
+	public void play() {
+		if(songInBytes != null){
+			AudioTrack at = new AudioTrack(AudioManager.STREAM_MUSIC,
+					RECORDER_SAMPLERATE, RECORDER_CHANNELS,
+					RECORDER_AUDIO_ENCODING, songInBytes.length, AudioTrack.MODE_STATIC);
+			at.write(songInBytes, 0, songInBytes.length);
+			at.play();
+			if (stopFlag == true) {
+				at.stop();
+			}
+		}
+		stopFlag = false;
 	}
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
-
+		stopFlag = true;
 	}
 
 	@Override

@@ -17,12 +17,32 @@
         android:text="@string/hello_ourmusic" />
 
     <Button
-        android:id="@+id/buttonRecordingPlaying"
+        android:id="@+id/pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/test_recording_playing" 
-        android:onClick="recordingPlaying"/>
+        android:text="@string/pause" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pause"
+        android:text="@string/stop" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stop"
+        android:text="@string/play" />
+
+    <Button
+        android:id="@+id/record"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/play"
+        android:text="@string/record" />
 
 </RelativeLayout>

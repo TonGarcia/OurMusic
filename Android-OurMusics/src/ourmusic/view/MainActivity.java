@@ -16,16 +16,17 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Button btn = (Button) this.findViewById(R.id.buttonRecordingPlaying);
-		btn.setOnClickListener(new View.OnClickListener() {
-			
+		player = new Player();
+		
+		Button buttonRecord = (Button) this.findViewById(R.id.record);
+		buttonRecord.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				player = new Player();
-				byte[] somEmBytes = player.record();
-				player.play(somEmBytes);
+				player.record();
 			}
 		});
+		
+		Button buttonStop = (Button) this.findViewById(R.id.stop);
 		
 	}
 	

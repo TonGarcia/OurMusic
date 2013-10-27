@@ -2,8 +2,8 @@ package ourmusic.model;
 
 public interface SoundManager {
 	
-	public byte[] record();
-	public void play(byte[] baos);
+	public void record();
+	public void play();
 	public void stop();
 	public void pause();
 

@@ -334,7 +334,8 @@
         android:id="@+id/btnSetSoundGetChord"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffa500"
-        android:src="@android:drawable/ic_media_play" />
+        android:background="@drawable/orange_button"
+        android:src="@android:drawable/ic_btn_speak_now"
+       />
 
 </LinearLayout>

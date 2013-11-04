@@ -26,19 +26,20 @@ public final class R {
         public static final int fingersplaying=0x7f020002;
         public static final int guitar_full=0x7f020003;
         public static final int ic_launcher=0x7f020004;
-        public static final int playingguitarv2=0x7f020005;
-        public static final int vertical_progress_bara=0x7f020006;
-        public static final int vertical_progress_barb=0x7f020007;
-        public static final int vertical_progress_barbb=0x7f020008;
-        public static final int vertical_progress_barc=0x7f020009;
-        public static final int vertical_progress_barcs=0x7f02000a;
-        public static final int vertical_progress_bard=0x7f02000b;
-        public static final int vertical_progress_bare=0x7f02000c;
-        public static final int vertical_progress_bareb=0x7f02000d;
-        public static final int vertical_progress_barf=0x7f02000e;
-        public static final int vertical_progress_barfs=0x7f02000f;
-        public static final int vertical_progress_barg=0x7f020010;
-        public static final int vertical_progress_bargs=0x7f020011;
+        public static final int orange_button=0x7f020005;
+        public static final int playingguitarv2=0x7f020006;
+        public static final int vertical_progress_bara=0x7f020007;
+        public static final int vertical_progress_barb=0x7f020008;
+        public static final int vertical_progress_barbb=0x7f020009;
+        public static final int vertical_progress_barc=0x7f02000a;
+        public static final int vertical_progress_barcs=0x7f02000b;
+        public static final int vertical_progress_bard=0x7f02000c;
+        public static final int vertical_progress_bare=0x7f02000d;
+        public static final int vertical_progress_bareb=0x7f02000e;
+        public static final int vertical_progress_barf=0x7f02000f;
+        public static final int vertical_progress_barfs=0x7f020010;
+        public static final int vertical_progress_barg=0x7f020011;
+        public static final int vertical_progress_bargs=0x7f020012;
     }
     public static final class id {
         public static final int A=0x7f080015;

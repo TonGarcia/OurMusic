@@ -6,6 +6,9 @@ import java.io.IOException;
 import android.R.drawable;
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
@@ -45,6 +48,8 @@ public class MainActivity extends Activity {
 	private ProgressBar pbBb;
 	private ProgressBar pbB;
 	private ProgressBar[] barraCores;
+	
+	private Drawable microphoneButton;
 
 	private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
 			"G", "G#", "A", "Bb", "B" };
@@ -74,7 +79,13 @@ public class MainActivity extends Activity {
 		myfft = new MyFFT();
 		chordTV = (TextView) findViewById(R.id.Chord);
 		chordTV.setTextSize(70);
+		//Colocando o botao do microfone branco 
+		microphoneButton = this.getResources().getDrawable(drawable.ic_btn_speak_now);
+		ColorFilter filter = new LightingColorFilter( Color.WHITE, Color.WHITE);
+		microphoneButton.setColorFilter(filter);
+		
 		btnSetSoundGetChord = (ImageButton) findViewById(R.id.btnSetSoundGetChord);
+		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
 
 		barraCores = new ProgressBar[12];
@@ -147,7 +158,7 @@ public class MainActivity extends Activity {
 				if (started) {
 					started = false;
 					asyncTask.cancel(true);
-					btnSetSoundGetChord.setImageResource(drawable.ic_media_play);
+					btnSetSoundGetChord.setImageDrawable(microphoneButton);
 
 				} else {
 					System.out.println("Botao para come�ar apertado");

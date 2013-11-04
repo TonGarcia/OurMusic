@@ -20,7 +20,8 @@
             android:layout_centerVertical="true"
             android:textColor="#FFFFA500"
             android:textIsSelectable="false"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            />
     </RelativeLayout>
 
     <LinearLayout

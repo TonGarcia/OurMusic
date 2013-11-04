@@ -1225,7 +1225,7 @@ public class MyFFT {
 		return S2;
 	}
 
-	public String getAcorde() {
+	public int getAcorde() {
 
 		/**
 		 * RADIAL BASIS LAYER para BD Acordes
@@ -1286,7 +1286,7 @@ public class MyFFT {
 		// Procurando no vetor Acordes o acorde tocado
 		Acorde = nomeAcordes[slotMaxS2];
 
-		return Acorde;
+		return slotMaxS2;
 	}
 
 }

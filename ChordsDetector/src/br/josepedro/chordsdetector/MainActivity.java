@@ -8,6 +8,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
@@ -48,42 +51,43 @@ public class MainActivity extends Activity {
 	private ProgressBar pbBb;
 	private ProgressBar pbB;
 	private ProgressBar[] barraCores;
-	
+
 	private Drawable microphoneButton;
+	
+	private Shader textGradient;
 
 	private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
 			"G", "G#", "A", "Bb", "B" };
-	private static int[] coresNotas = { /** vermelho */
-	Color.rgb(255, 0, 0), /** Brown */
-	Color.rgb(130, 90, 44), /** laranja */
-	Color.rgb(255, 165, 0),
-	/** Crimson */
-	Color.rgb(162, 0, 37), /** amarelo */
-	Color.rgb(135, 206, 250), /** verde */
-	Color.rgb(0, 255, 0), /** mauve */
-	Color.rgb(118, 96, 138),
-	/** azul */
-	Color.rgb(0, 0, 255), /** lime */
-	Color.rgb(164, 196, 0), /** indigo */
-	Color.rgb(75, 0, 130), /** olive */
-	Color.rgb(129, 155, 120),
-	/** violeta */
-	Color.rgb(170, 0, 255) };
-	
+	private static int[] coresNotas = { Color.rgb(95, 158, 160),
+			Color.rgb(218, 165, 32), Color.rgb(0, 0, 255),
+			Color.rgb(50, 205, 50), Color.rgb(123, 104, 238),
+			Color.rgb(255, 20, 147), Color.rgb(238, 130, 238),
+			Color.rgb(255, 0, 0), Color.rgb(165, 42, 42),
+			Color.rgb(255, 165, 0), Color.rgb(205, 133, 63),
+			Color.rgb(0, 206, 209) };
+
+	private static String[] nomeAcordes = { "F", "F m", "F aum", "F dim", "F#",
+			"F# m", "F# aum", "F# dim", "G", "G m", "G aum", "G dim", "G#",
+			"G# m", "G# aum", "G# dim", "A", "A m", "A aum", "A dim", "Bb",
+			"Bb m", "Bb aum", "Bb dim", "B", "B m", "B aum", "B dim", "C",
+			"C m", "C aum", "C dim", "C#", "C# m", "C# aum", "C# dim", "D",
+			"D m", "D aum", "D dim", "Eb", "Eb m", "Eb aum", "Eb dim", "E",
+			"E m", "E aum", "E dim" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainactivity);
-		
+
 		myfft = new MyFFT();
 		chordTV = (TextView) findViewById(R.id.Chord);
 		chordTV.setTextSize(70);
-		//Colocando o botao do microfone branco 
-		microphoneButton = this.getResources().getDrawable(drawable.ic_btn_speak_now);
-		ColorFilter filter = new LightingColorFilter( Color.WHITE, Color.WHITE);
+		// Colocando o botao do microfone branco
+		microphoneButton = this.getResources().getDrawable(
+				drawable.ic_btn_speak_now);
+		ColorFilter filter = new LightingColorFilter(Color.WHITE, Color.WHITE);
 		microphoneButton.setColorFilter(filter);
-		
+
 		btnSetSoundGetChord = (ImageButton) findViewById(R.id.btnSetSoundGetChord);
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
@@ -142,7 +146,7 @@ public class MainActivity extends Activity {
 		}
 
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -166,7 +170,8 @@ public class MainActivity extends Activity {
 					asyncTask = null;
 					asyncTask = new RecordingAndSetChord();
 					asyncTask.execute();
-					btnSetSoundGetChord.setImageResource(drawable.ic_media_pause);
+					btnSetSoundGetChord
+							.setImageResource(drawable.ic_media_pause);
 
 				}
 				break;
@@ -284,9 +289,14 @@ public class MainActivity extends Activity {
 
 			myfft.setS1(values[0]);
 
-			String Acorde = myfft.getAcorde();
+			int numAcorde = myfft.getAcorde();
 
-			chordTV.setText(Acorde);
+			chordTV.setText(nomeAcordes[numAcorde]);
+			textGradient = new LinearGradient(0, 0, 0, 250, new int[] {
+					coresNotas[(int) (numAcorde / 4)], Color.rgb(153, 47, 47) }, new float[] {
+					0, 1 }, TileMode.CLAMP);
+
+			chordTV.getPaint().setShader(textGradient);
 
 		}
 

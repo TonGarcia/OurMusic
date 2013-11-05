@@ -3,7 +3,7 @@
     android:id="@+id/mainLinearLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/fingers_playing_v2"
+    android:background="@drawable/backgroundcolor"
     android:orientation="vertical"
     android:padding="20dip" >
 
@@ -338,5 +338,5 @@
         android:background="@drawable/orange_button"
         android:src="@android:drawable/ic_btn_speak_now"
        />
-
+		
 </LinearLayout>

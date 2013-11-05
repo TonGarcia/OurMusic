@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import android.R.drawable;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -18,11 +20,13 @@ import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import br.jp.example.soundrecordingexample2.R;
 
+@SuppressLint("NewApi")
 public class MainActivity extends Activity {
 
 	private static final int RECORDER_SAMPLERATE = 44100;
@@ -55,6 +59,9 @@ public class MainActivity extends Activity {
 	private Drawable microphoneButton;
 	
 	private Shader textGradient;
+	
+	private float amplitude;
+	private View view;
 
 	private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
 			"G", "G#", "A", "Bb", "B" };
@@ -91,6 +98,8 @@ public class MainActivity extends Activity {
 		btnSetSoundGetChord = (ImageButton) findViewById(R.id.btnSetSoundGetChord);
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
+		
+		view = this.getWindow().getDecorView();
 
 		barraCores = new ProgressBar[12];
 
@@ -222,8 +231,9 @@ public class MainActivity extends Activity {
 						baos.write(data, 0, result);
 						// amplitude = (data[data.length/2] & 0xff) << 8 |
 						// data[data.length/2+1]; 50692
-						// amplitude = (data[0] & 0xff) << 8 | data[1];
-						// amplitude = Math.abs(amplitude);
+						 amplitude = (data[0] & 0xff) << 8 | data[1];
+						 amplitude = Math.abs(amplitude);
+						 System.out.println(amplitude);
 
 					}
 					tempoDecorrido = System.currentTimeMillis() - tempoInicio;
@@ -243,6 +253,7 @@ public class MainActivity extends Activity {
 				myfft.setByteArraySong(byteArrayBaos);
 				float[] S1 = myfft.getS1();
 
+				System.out.println(amplitude);
 				publishProgress(S1);
 
 				try {
@@ -286,7 +297,10 @@ public class MainActivity extends Activity {
 				// }
 
 			}
-
+			
+			System.out.println(amplitude);
+			view.setBackgroundColor(Color.rgb((int)amplitude,(int) amplitude, (int)amplitude));
+			
 			myfft.setS1(values[0]);
 
 			int numAcorde = myfft.getAcorde();

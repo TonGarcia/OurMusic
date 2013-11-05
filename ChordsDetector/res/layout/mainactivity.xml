@@ -67,7 +67,7 @@
                 android:id="@+id/vertical_progressbarCs"
                 style="@style/Widget.ProgressBar.Verticalcs"
                 android:layout_width="12dip"
-                android:layout_height="130dip" />
+                android:layout_height="85dip" />
 
             <TextView
                 android:id="@+id/Cs"
@@ -117,7 +117,7 @@
                 android:id="@+id/vertical_progressbarEb"
                 style="@style/Widget.ProgressBar.Verticaleb"
                 android:layout_width="12dip"
-                android:layout_height="130dip" />
+                android:layout_height="85dip" />
 
             <TextView
                 android:id="@+id/Eb"
@@ -192,7 +192,7 @@
                 android:id="@+id/vertical_progressbarFs"
                 style="@style/Widget.ProgressBar.Verticalfs"
                 android:layout_width="12dip"
-                android:layout_height="130dip" />
+                android:layout_height="85dip" />
 
             <TextView
                 android:id="@+id/Fs"
@@ -242,7 +242,7 @@
                 android:id="@+id/vertical_progressbarGs"
                 style="@style/Widget.ProgressBar.Verticalgs"
                 android:layout_width="12dip"
-                android:layout_height="130dip" />
+                android:layout_height="85dip" />
 
             <TextView
                 android:id="@+id/Gs"
@@ -292,7 +292,7 @@
                 android:id="@+id/vertical_progressbarBb"
                 style="@style/Widget.ProgressBar.Verticalbb"
                 android:layout_width="12dip"
-                android:layout_height="130dip" />
+                android:layout_height="85dip" />
 
             <TextView
                 android:id="@+id/Bb"

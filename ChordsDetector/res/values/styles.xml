@@ -36,7 +36,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalcs">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barcs</item>
@@ -44,7 +44,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticald">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bard</item>
@@ -52,7 +52,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticaleb">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bareb</item>
@@ -60,7 +60,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticale">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bare</item>
@@ -68,7 +68,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalf">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barf</item>
@@ -76,7 +76,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalfs">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barfs</item>
@@ -84,7 +84,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalg">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barg</item>
@@ -92,7 +92,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalgs">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bargs</item>
@@ -100,7 +100,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticala">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bara</item>
@@ -108,7 +108,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalbb">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barbb</item>
@@ -116,7 +116,7 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
+
     <style name="Widget.ProgressBar.Verticalb">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_barb</item>
@@ -124,7 +124,19 @@
         <item name="android:minWidth">1dip</item>
         <item name="android:maxWidth">12dip</item>
     </style>
-    
-   
+
+    <style name="button_text">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
 
 </resources>

@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.28" >
 
+       
+
         <TextView
             android:id="@+id/Chord"
             android:layout_width="wrap_content"
@@ -20,9 +22,14 @@
             android:layout_centerVertical="true"
             android:textColor="#FFFFA500"
             android:textIsSelectable="false"
-            android:textSize="12sp"
-            />
+            android:textSize="12sp" />
     </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbartest"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -336,7 +343,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/orange_button"
-        android:src="@android:drawable/ic_btn_speak_now"
-       />
-		
+        android:src="@android:drawable/ic_btn_speak_now" />
+
 </LinearLayout>

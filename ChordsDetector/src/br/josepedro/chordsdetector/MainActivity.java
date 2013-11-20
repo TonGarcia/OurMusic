@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import android.R.drawable;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -19,8 +18,10 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,11 +34,15 @@ public class MainActivity extends Activity {
 	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
 	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
 
+	private Menu optionsMenu;
+
 	private MyFFT myfft;
 	private TextView chordTV;
 	private ImageButton btnSetSoundGetChord;
-	private RecordingAndSetChord asyncTask = null;
+	private RecordingAndSetChord asyncTaskChords = null;
 	private boolean started = false;
+
+	private ImageButton btnHelp;
 
 	private AudioRecord recorder = null;
 	private int bufferSize = 0;
@@ -57,14 +62,13 @@ public class MainActivity extends Activity {
 	private ProgressBar[] barraCores;
 
 	private Drawable microphoneButton;
-	
-	private Shader textGradient;
-	
-	private float amplitude;
-	private View view;
 
-	private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
-			"G", "G#", "A", "Bb", "B" };
+	private Shader textGradient;
+
+	private ProgressBar playingBar;
+
+	// private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
+	// "G", "G#", "A", "Bb", "B" };
 	private static int[] coresNotas = { Color.rgb(95, 158, 160),
 			Color.rgb(218, 165, 32), Color.rgb(0, 0, 255),
 			Color.rgb(50, 205, 50), Color.rgb(123, 104, 238),
@@ -80,6 +84,27 @@ public class MainActivity extends Activity {
 			"C m", "C aum", "C dim", "C#", "C# m", "C# aum", "C# dim", "D",
 			"D m", "D aum", "D dim", "Eb", "Eb m", "Eb aum", "Eb dim", "E",
 			"E m", "E aum", "E dim" };
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		this.optionsMenu = menu;
+		MenuInflater inflater = this.getMenuInflater();
+		inflater.inflate(R.menu.sound_recording_example2, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.airport_menuRefresh:
+			MenuItem refreshItem = optionsMenu
+					.findItem(R.id.airport_menuRefresh);
+			refreshItem.setActionView(R.layout.actionbar);
+			// Complete with your code
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -98,8 +123,9 @@ public class MainActivity extends Activity {
 		btnSetSoundGetChord = (ImageButton) findViewById(R.id.btnSetSoundGetChord);
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
-		
-		view = this.getWindow().getDecorView();
+
+		playingBar = (ProgressBar) this.findViewById(R.id.progressbartest);
+		playingBar.setVisibility(-1);
 
 		barraCores = new ProgressBar[12];
 
@@ -140,25 +166,29 @@ public class MainActivity extends Activity {
 		pbB.setProgress(0);
 		barraCores[11] = pbB;
 
-		// barraCores = {pbC,pbCs,pbD,pbEb,pbE,pbF,pbFs,pbG,pbGs,pbA,pbBb,pbB};
+	}
 
+	public void onClickHelp(View view) {
+
+		System.out.println("Help Clicado!!!!");
+		// MenuItem refreshItem = optionsMenu
+		// .findItem(R.id.help);
+		// refreshItem.setActionView(R.layout.actionbar);
 	}
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
-		if (asyncTask != null) {
+		if (asyncTaskChords != null) {
 			started = false;
-			asyncTask.cancel(true);
-			asyncTask = null;
+			asyncTaskChords.cancel(true);
+			asyncTaskChords = null;
 		}
 
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
@@ -169,25 +199,33 @@ public class MainActivity extends Activity {
 
 			case R.id.btnSetSoundGetChord: {
 				if (started) {
-					started = false;
-					asyncTask.cancel(true);
-					btnSetSoundGetChord.setImageDrawable(microphoneButton);
+					stopRecorders();
 
 				} else {
-					System.out.println("Botao para come�ar apertado");
-					started = true;
-					asyncTask = null;
-					asyncTask = new RecordingAndSetChord();
-					asyncTask.execute();
-					btnSetSoundGetChord
-							.setImageResource(drawable.ic_media_pause);
-
+					playRecorders();
 				}
 				break;
 			}
 			}
 		}
 	};
+
+	public void stopRecorders() {
+		started = false;
+		asyncTaskChords.cancel(true);
+		btnSetSoundGetChord.setImageDrawable(microphoneButton);
+		playingBar.setVisibility(-1);
+	}
+
+	public void playRecorders() {
+		System.out.println("Botao para comecar apertado");
+		started = true;
+		asyncTaskChords = null;
+		asyncTaskChords = new RecordingAndSetChord();
+		asyncTaskChords.execute();
+		btnSetSoundGetChord.setImageResource(drawable.ic_media_pause);
+		playingBar.setVisibility(1);
+	}
 
 	private class RecordingAndSetChord extends AsyncTask<Void, float[], Void> {
 
@@ -197,7 +235,6 @@ public class MainActivity extends Activity {
 			System.out.println("Do in background!!!");
 
 			while (started) {
-				long tIn = System.currentTimeMillis();
 				// Inicializando vari�veis para a grava��o
 				bufferSize = AudioRecord.getMinBufferSize(RECORDER_SAMPLERATE,
 						AudioFormat.CHANNEL_IN_MONO,
@@ -229,12 +266,6 @@ public class MainActivity extends Activity {
 					} else {
 
 						baos.write(data, 0, result);
-						// amplitude = (data[data.length/2] & 0xff) << 8 |
-						// data[data.length/2+1]; 50692
-						 amplitude = (data[0] & 0xff) << 8 | data[1];
-						 amplitude = Math.abs(amplitude);
-						 System.out.println(amplitude);
-
 					}
 					tempoDecorrido = System.currentTimeMillis() - tempoInicio;
 				}
@@ -245,16 +276,12 @@ public class MainActivity extends Activity {
 
 				byte[] byteArrayBaos = baos.toByteArray();
 
-				float[] songInFloat = new float[byteArrayBaos.length / 2];
-				for (int j = 0; j < songInFloat.length; j++) {
-					songInFloat[j] = ((byteArrayBaos[j * 2] & 0XFF) << 8 | (byteArrayBaos[j * 2 + 1])) / 32768.0F;
-				}
-
 				myfft.setByteArraySong(byteArrayBaos);
 				float[] S1 = myfft.getS1();
 
-				System.out.println(amplitude);
-				publishProgress(S1);
+				if (S1 != null) {
+					publishProgress(S1);
+				}
 
 				try {
 
@@ -265,12 +292,6 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				/**
-				 * Abrindo o arquivo para dizer qual acorde que
-				 * �----------------------------------------------
-				 */
-
-				long tFIN = System.currentTimeMillis() - tIn;
 			}
 			return null;
 		}
@@ -278,6 +299,7 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onProgressUpdate(float[]... values) {
 
+			// Esqueci porque coloquei isso aqui
 			float[] valores = new float[12];
 			for (int l = 0; l < values[0].length; l++) {
 				valores[l] = values[0][(l + 7) % values[0].length];
@@ -285,40 +307,27 @@ public class MainActivity extends Activity {
 
 			System.out.println("---------------------");
 			for (int i = 0; i < 12; i++) {
-				// int x = i * 21 + 2;
 				int ampli = (int) ((int) 100 * valores[i]);
 				barraCores[i].setProgress(ampli);
-				// int ampli2 = 100 - ampli;
-				// paint.setColor(coresNotas[i]);
-				// int j = 0;
-				// while (j < 19) {
-				// canvas.drawLine(x + j, ampli2, x + j, 100, paint);
-				// j++;
-				// }
-
 			}
-			
-			System.out.println(amplitude);
-			view.setBackgroundColor(Color.rgb((int)amplitude,(int) amplitude, (int)amplitude));
-			
+
+			// Setando valores na tela
 			myfft.setS1(values[0]);
-
 			int numAcorde = myfft.getAcorde();
-
 			chordTV.setText(nomeAcordes[numAcorde]);
-			textGradient = new LinearGradient(0, 0, 0, 250, new int[] {
-					coresNotas[(int) (numAcorde / 4)], Color.rgb(153, 47, 47) }, new float[] {
-					0, 1 }, TileMode.CLAMP);
-
+			textGradient = new LinearGradient(0, 0, 0, 250,
+					new int[] { coresNotas[(int) (numAcorde / 4)],
+							Color.rgb(153, 47, 47) }, new float[] { 0, 1 },
+					TileMode.CLAMP);
 			chordTV.getPaint().setShader(textGradient);
 
 		}
 
 		@Override
 		protected void onCancelled() {
-			// TODO Auto-generated method stub
 			super.onCancelled();
 		}
 
 	}
+
 }

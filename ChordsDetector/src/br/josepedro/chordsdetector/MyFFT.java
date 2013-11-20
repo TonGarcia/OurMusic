@@ -1029,9 +1029,20 @@ public class MyFFT {
 			}
 		}
 
-		// Equalizando o som
+		// Equalizando o som e calculando energia total TODO
+		float sum = 0;
 		for (int i = 0; i < songInFloat.length; i++) {
 			songInFloat[i] = songInFloat[i] / maxsongInFloat;
+			sum += (songInFloat[i]*songInFloat[i]);
+		}
+		sum = sum/songInFloat.length;
+		System.out.println("Energia total: "+sum);
+		
+		
+		
+		if (sum <= 0.07) {
+			System.out.println("Energia total pouca");
+			return null;
 		}
 
 		this.Som = songInFloat;
@@ -1193,14 +1204,15 @@ public class MyFFT {
 			// Calcular correlação
 			S1[l] = (float) Math.sqrt(Math.pow(
 					(covXY / Math.sqrt(varX * varY)), 2));
+			System.out.println("S1:"+S1[l]);
 		}
 
+		// Normalizacao
 		float min = 1;
 		for (int m = 0; m < S1.length; m++) {
 			if (S1[m] < min) {
 				min = S1[m];
 			}
-
 		}
 
 		for (int l = 0; l < S1.length; l++) {

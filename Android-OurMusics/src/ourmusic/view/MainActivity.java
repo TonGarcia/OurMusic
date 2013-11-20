@@ -27,6 +27,28 @@ public class MainActivity extends Activity {
 		});
 		
 		Button buttonStop = (Button) this.findViewById(R.id.stop);
+		buttonStop.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				player.stop();
+			}
+		});
+		
+		Button buttonPlay = (Button) this.findViewById(R.id.play);
+		buttonPlay.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				player.play();
+			}
+		});
+		
+		Button buttonPause = (Button) this.findViewById(R.id.pause);
+		buttonPause.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				player.pause();
+			}
+		});
 		
 	}
 	

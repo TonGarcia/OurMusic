@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
 	private static final int RECORDER_SAMPLERATE = 44100;
 	private static final int RECORDER_CHANNELS = AudioFormat.CHANNEL_IN_MONO;
 	private static final int RECORDER_AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+	private static final float minEnergy = (float) 0.07;
 
 	private Menu optionsMenu;
 
@@ -227,7 +228,7 @@ public class MainActivity extends Activity {
 		playingBar.setVisibility(1);
 	}
 
-	private class RecordingAndSetChord extends AsyncTask<Void, float[], Void> {
+	private class RecordingAndSetChord extends AsyncTask<Void, byte[], Void> {
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -274,14 +275,9 @@ public class MainActivity extends Activity {
 				recorder.release();
 				recorder = null;
 
-				byte[] byteArrayBaos = baos.toByteArray();
+				
+				publishProgress(baos.toByteArray());
 
-				myfft.setByteArraySong(byteArrayBaos);
-				float[] S1 = myfft.getS1();
-
-				if (S1 != null) {
-					publishProgress(S1);
-				}
 
 				try {
 
@@ -297,29 +293,35 @@ public class MainActivity extends Activity {
 		}
 
 		@Override
-		protected void onProgressUpdate(float[]... values) {
+		protected void onProgressUpdate(byte[]... values) {
 
-			// Esqueci porque coloquei isso aqui
-			float[] valores = new float[12];
-			for (int l = 0; l < values[0].length; l++) {
-				valores[l] = values[0][(l + 7) % values[0].length];
+			myfft.setByteArraySong(values[0]);
+			float[] S1 = myfft.getS1();
+			
+			
+			if (myfft.getEnergy() > minEnergy) {
+				// Reordenando as notas nas barras de energia
+				float[] valores = new float[12];
+				for (int l = 0; l < S1.length; l++) {
+					valores[l] = S1[(l + 7) % S1.length];
+				}
+
+				System.out.println("---------------------");
+				for (int i = 0; i < 12; i++) {
+					int ampli = (int) ((int) 100 * valores[i]);
+					barraCores[i].setProgress(ampli);
+				}
+
+				// Setando valores na tela
+				int numAcorde = myfft.getAcorde();
+				chordTV.setText(nomeAcordes[numAcorde]);
+				textGradient = new LinearGradient(0, 0, 0, 250,
+						new int[] { coresNotas[(int) (numAcorde / 4)],
+								Color.rgb(153, 47, 47) }, new float[] { 0, 1 },
+						TileMode.CLAMP);
+				chordTV.getPaint().setShader(textGradient);
 			}
-
-			System.out.println("---------------------");
-			for (int i = 0; i < 12; i++) {
-				int ampli = (int) ((int) 100 * valores[i]);
-				barraCores[i].setProgress(ampli);
-			}
-
-			// Setando valores na tela
-			myfft.setS1(values[0]);
-			int numAcorde = myfft.getAcorde();
-			chordTV.setText(nomeAcordes[numAcorde]);
-			textGradient = new LinearGradient(0, 0, 0, 250,
-					new int[] { coresNotas[(int) (numAcorde / 4)],
-							Color.rgb(153, 47, 47) }, new float[] { 0, 1 },
-					TileMode.CLAMP);
-			chordTV.getPaint().setShader(textGradient);
+ 			
 
 		}
 

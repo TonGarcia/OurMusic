@@ -23,14 +23,16 @@ public class MyFFT {
 	// "A M", "A m", "A aum", "A dim", "Bb M", "Bb m", "Bb aum", "Bb dim",
 	// "B M", "B m", "B aum", "B dim" };
 	private static String[] nomeAcordes = { "F", "F m", "F aum", "F dim", "F#",
-			"F# m", "F# aum", "F# dim", "G", "G m", "G aum", "G dim", "G#", "G# m",
-			"G# aum", "G# dim", "A", "A m", "A aum", "A dim", "Bb", "Bb m",
-			"Bb aum", "Bb dim", "B", "B m", "B aum", "B dim", "C", "C m", "C aum",
-			"C dim", "C#", "C# m", "C# aum", "C# dim", "D", "D m", "D aum", "D dim",
-			"Eb", "Eb m", "Eb aum", "Eb dim", "E", "E m", "E aum", "E dim" };
+			"F# m", "F# aum", "F# dim", "G", "G m", "G aum", "G dim", "G#",
+			"G# m", "G# aum", "G# dim", "A", "A m", "A aum", "A dim", "Bb",
+			"Bb m", "Bb aum", "Bb dim", "B", "B m", "B aum", "B dim", "C",
+			"C m", "C aum", "C dim", "C#", "C# m", "C# aum", "C# dim", "D",
+			"D m", "D aum", "D dim", "Eb", "Eb m", "Eb aum", "Eb dim", "E",
+			"E m", "E aum", "E dim" };
 	private String Acorde;
 	private byte[] songInByte;
 	private float[] songInFloat;
+	private float energy;
 
 	public MyFFT() {
 
@@ -40,15 +42,13 @@ public class MyFFT {
 				notas[linha][coluna] = 0;
 			}
 		}
-		
+
 		float g1 = (float) 0.01;
 		float g2 = (float) 0.05;
 		float g3 = (float) 0.1;
 		float g4 = (float) 0.4;
 		float g5 = (float) 0.8;
 		float g6 = 1;
-
-		
 
 		/** Linha[0] = Dó */
 		notas[0][60] = g1;
@@ -1018,10 +1018,14 @@ public class MyFFT {
 		return f;
 	}
 
+	public float getEnergy() {
+		return energy;
+	}
+
 	public float[] getS1() {
 		// Transformando o vetor de bytes para vetor de floats
 		float maxsongInFloat = 0;
-		float[] songInFloat = new float[songInByte.length / 2];
+		this.songInFloat = new float[songInByte.length / 2];
 		for (int i = 0; i < songInFloat.length; i++) {
 			songInFloat[i] = ((songInByte[i * 2] & 0XFF) | (songInByte[i * 2 + 1] << 8)) / 32768.0F;
 			if (songInFloat[i] > maxsongInFloat) {
@@ -1029,21 +1033,16 @@ public class MyFFT {
 			}
 		}
 
-		// Equalizando o som e calculando energia total TODO
+		// Equalizando o som e calculando energia total 
 		float sum = 0;
 		for (int i = 0; i < songInFloat.length; i++) {
 			songInFloat[i] = songInFloat[i] / maxsongInFloat;
-			sum += (songInFloat[i]*songInFloat[i]);
+			sum += (songInFloat[i] * songInFloat[i]);
 		}
-		sum = sum/songInFloat.length;
-		System.out.println("Energia total: "+sum);
+		this.energy = sum / songInFloat.length;
 		
 		
-		
-		if (sum <= 0.07) {
-			System.out.println("Energia total pouca");
-			return null;
-		}
+		System.out.println("Energia total: " + sum);
 
 		this.Som = songInFloat;
 
@@ -1204,7 +1203,7 @@ public class MyFFT {
 			// Calcular correlação
 			S1[l] = (float) Math.sqrt(Math.pow(
 					(covXY / Math.sqrt(varX * varY)), 2));
-			System.out.println("S1:"+S1[l]);
+			System.out.println("S1:" + S1[l]);
 		}
 
 		// Normalizacao

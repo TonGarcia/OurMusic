@@ -26,31 +26,55 @@ public final class R {
         public static final int fingers_playing_v2=0x7f020002;
         public static final int fingersplaying=0x7f020003;
         public static final int guitar_full=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int orange_button=0x7f020006;
-        public static final int playingguitarv2=0x7f020007;
-        public static final int red_button=0x7f020008;
-        public static final int text_orange=0x7f020009;
-        public static final int vertical_progress_bara=0x7f02000a;
-        public static final int vertical_progress_barb=0x7f02000b;
-        public static final int vertical_progress_barbb=0x7f02000c;
-        public static final int vertical_progress_barc=0x7f02000d;
-        public static final int vertical_progress_barcs=0x7f02000e;
-        public static final int vertical_progress_bard=0x7f02000f;
-        public static final int vertical_progress_bare=0x7f020010;
-        public static final int vertical_progress_bareb=0x7f020011;
-        public static final int vertical_progress_barf=0x7f020012;
-        public static final int vertical_progress_barfs=0x7f020013;
-        public static final int vertical_progress_barg=0x7f020014;
-        public static final int vertical_progress_bargs=0x7f020015;
+        public static final int horizontal_progress_bar=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int orange_button=0x7f020007;
+        public static final int playingguitarv2=0x7f020008;
+        public static final int red_button=0x7f020009;
+        public static final int text_orange=0x7f02000a;
+        public static final int vertical_progress_bara=0x7f02000b;
+        public static final int vertical_progress_barb=0x7f02000c;
+        public static final int vertical_progress_barbb=0x7f02000d;
+        public static final int vertical_progress_barc=0x7f02000e;
+        public static final int vertical_progress_barcs=0x7f02000f;
+        public static final int vertical_progress_bard=0x7f020010;
+        public static final int vertical_progress_bare=0x7f020011;
+        public static final int vertical_progress_bareb=0x7f020012;
+        public static final int vertical_progress_barf=0x7f020013;
+        public static final int vertical_progress_barfs=0x7f020014;
+        public static final int vertical_progress_barg=0x7f020015;
+        public static final int vertical_progress_bargs=0x7f020016;
     }
     public static final class id {
+        public static final int A=0x7f080016;
+        public static final int B=0x7f08001a;
+        public static final int Bb=0x7f080018;
+        public static final int C=0x7f080004;
         public static final int Chord=0x7f080002;
-        public static final int action_settings=0x7f080004;
-        public static final int airport_menuRefresh=0x7f080005;
-        public static final int btnSetSoundGetChord=0x7f080003;
+        public static final int Cs=0x7f080006;
+        public static final int D=0x7f080008;
+        public static final int E=0x7f08000c;
+        public static final int Eb=0x7f08000a;
+        public static final int F=0x7f08000e;
+        public static final int Fs=0x7f080010;
+        public static final int G=0x7f080012;
+        public static final int Gs=0x7f080014;
+        public static final int airport_menuRefresh=0x7f08001c;
+        public static final int btnSetSoundGetChord=0x7f08001b;
         public static final int mainLinearLayout=0x7f080000;
+        public static final int vertical_progressbarA=0x7f080015;
+        public static final int vertical_progressbarB=0x7f080019;
+        public static final int vertical_progressbarBb=0x7f080017;
+        public static final int vertical_progressbarC=0x7f080003;
+        public static final int vertical_progressbarCs=0x7f080005;
+        public static final int vertical_progressbarD=0x7f080007;
+        public static final int vertical_progressbarE=0x7f08000b;
+        public static final int vertical_progressbarEb=0x7f080009;
         public static final int vertical_progressbarEnergy=0x7f080001;
+        public static final int vertical_progressbarF=0x7f08000d;
+        public static final int vertical_progressbarFs=0x7f08000f;
+        public static final int vertical_progressbarG=0x7f080011;
+        public static final int vertical_progressbarGs=0x7f080013;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;
@@ -102,6 +126,7 @@ public final class R {
         public static final int AppTheme=0x7f060001;
         public static final int Widget=0x7f060002;
         public static final int Widget_ProgressBar=0x7f060003;
+        public static final int Widget_ProgressBar_HorizontalProgressBar=0x7f060010;
         public static final int Widget_ProgressBar_Verticala=0x7f06000d;
         public static final int Widget_ProgressBar_Verticalb=0x7f06000f;
         public static final int Widget_ProgressBar_Verticalbb=0x7f06000e;
@@ -114,6 +139,6 @@ public final class R {
         public static final int Widget_ProgressBar_Verticalfs=0x7f06000a;
         public static final int Widget_ProgressBar_Verticalg=0x7f06000b;
         public static final int Widget_ProgressBar_Verticalgs=0x7f06000c;
-        public static final int button_text=0x7f060010;
+        public static final int button_text=0x7f060011;
     }
 }

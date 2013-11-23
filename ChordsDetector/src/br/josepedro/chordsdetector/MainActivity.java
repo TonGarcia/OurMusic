@@ -48,19 +48,19 @@ public class MainActivity extends Activity {
 	private AudioRecord recorder = null;
 	private int bufferSize = 0;
 
-	// private ProgressBar pbC;
-	// private ProgressBar pbCs;
-	// private ProgressBar pbD;
-	// private ProgressBar pbEb;
-	// private ProgressBar pbE;
-	// private ProgressBar pbF;
-	// private ProgressBar pbFs;
-	// private ProgressBar pbG;
-	// private ProgressBar pbGs;
-	// private ProgressBar pbA;
-	// private ProgressBar pbBb;
-	// private ProgressBar pbB;
-	// private ProgressBar[] barraCores;
+	 private ProgressBar pbC;
+	 private ProgressBar pbCs;
+	 private ProgressBar pbD;
+	 private ProgressBar pbEb;
+	 private ProgressBar pbE;
+	 private ProgressBar pbF;
+	 private ProgressBar pbFs;
+	 private ProgressBar pbG;
+	 private ProgressBar pbGs;
+	 private ProgressBar pbA;
+	 private ProgressBar pbBb;
+	 private ProgressBar pbB;
+	 private ProgressBar[] barraCores;
 
 	private ProgressBar pbEnergy;
 
@@ -125,44 +125,44 @@ public class MainActivity extends Activity {
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
 
-		// barraCores = new ProgressBar[12];
+		 barraCores = new ProgressBar[12];
 
-		// pbC = (ProgressBar) findViewById(R.id.vertical_progressbarC);
-		// pbC.setProgress(0);
-		// barraCores[0] = pbC;
-		// pbCs = (ProgressBar) findViewById(R.id.vertical_progressbarCs);
-		// pbCs.setProgress(0);
-		// barraCores[1] = pbCs;
-		// pbD = (ProgressBar) findViewById(R.id.vertical_progressbarD);
-		// pbD.setProgress(0);
-		// barraCores[2] = pbD;
-		// pbEb = (ProgressBar) findViewById(R.id.vertical_progressbarEb);
-		// pbEb.setProgress(0);
-		// barraCores[3] = pbEb;
-		// pbE = (ProgressBar) findViewById(R.id.vertical_progressbarE);
-		// pbE.setProgress(0);
-		// barraCores[4] = pbE;
-		// pbF = (ProgressBar) findViewById(R.id.vertical_progressbarF);
-		// pbF.setProgress(0);
-		// barraCores[5] = pbF;
-		// pbFs = (ProgressBar) findViewById(R.id.vertical_progressbarFs);
-		// pbFs.setProgress(0);
-		// barraCores[6] = pbFs;
-		// pbG = (ProgressBar) findViewById(R.id.vertical_progressbarG);
-		// pbG.setProgress(0);
-		// barraCores[7] = pbG;
-		// pbGs = (ProgressBar) findViewById(R.id.vertical_progressbarGs);
-		// pbGs.setProgress(0);
-		// barraCores[8] = pbGs;
-		// pbA = (ProgressBar) findViewById(R.id.vertical_progressbarA);
-		// pbA.setProgress(0);
-		// barraCores[9] = pbA;
-		// pbBb = (ProgressBar) findViewById(R.id.vertical_progressbarBb);
-		// pbBb.setProgress(0);
-		// barraCores[10] = pbBb;
-		// pbB = (ProgressBar) findViewById(R.id.vertical_progressbarB);
-		// pbB.setProgress(0);
-		// barraCores[11] = pbB;
+		 pbC = (ProgressBar) findViewById(R.id.vertical_progressbarC);
+		 pbC.setProgress(0);
+		 barraCores[0] = pbC;
+		 pbCs = (ProgressBar) findViewById(R.id.vertical_progressbarCs);
+		 pbCs.setProgress(0);
+		 barraCores[1] = pbCs;
+		 pbD = (ProgressBar) findViewById(R.id.vertical_progressbarD);
+		 pbD.setProgress(0);
+		 barraCores[2] = pbD;
+		 pbEb = (ProgressBar) findViewById(R.id.vertical_progressbarEb);
+		 pbEb.setProgress(0);
+		 barraCores[3] = pbEb;
+		 pbE = (ProgressBar) findViewById(R.id.vertical_progressbarE);
+		 pbE.setProgress(0);
+		 barraCores[4] = pbE;
+		 pbF = (ProgressBar) findViewById(R.id.vertical_progressbarF);
+		 pbF.setProgress(0);
+		 barraCores[5] = pbF;
+		 pbFs = (ProgressBar) findViewById(R.id.vertical_progressbarFs);
+		 pbFs.setProgress(0);
+		 barraCores[6] = pbFs;
+		 pbG = (ProgressBar) findViewById(R.id.vertical_progressbarG);
+		 pbG.setProgress(0);
+		 barraCores[7] = pbG;
+		 pbGs = (ProgressBar) findViewById(R.id.vertical_progressbarGs);
+		 pbGs.setProgress(0);
+		 barraCores[8] = pbGs;
+		 pbA = (ProgressBar) findViewById(R.id.vertical_progressbarA);
+		 pbA.setProgress(0);
+		 barraCores[9] = pbA;
+		 pbBb = (ProgressBar) findViewById(R.id.vertical_progressbarBb);
+		 pbBb.setProgress(0);
+		 barraCores[10] = pbBb;
+		 pbB = (ProgressBar) findViewById(R.id.vertical_progressbarB);
+		 pbB.setProgress(0);
+		 barraCores[11] = pbB;
 
 		pbEnergy = (ProgressBar) findViewById(R.id.vertical_progressbarEnergy);
 
@@ -304,11 +304,11 @@ public class MainActivity extends Activity {
 					valores[l] = S1[(l + 7) % S1.length];
 				}
 
-//				System.out.println("---------------------");
-//				for (int i = 0; i < 12; i++) {
-//					int ampli = (int) ((int) 100 * valores[i]);
-//					barraCores[i].setProgress(ampli);
-//				}
+				System.out.println("---------------------");
+				for (int i = 0; i < 12; i++) {
+					int ampli = (int) ((int) 100 * valores[i]);
+					barraCores[i].setProgress(ampli);
+				}
 
 				// Setando valores na tela
 				int numAcorde = myfft.getAcorde();

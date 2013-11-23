@@ -45,36 +45,12 @@ public final class R {
         public static final int vertical_progress_bargs=0x7f020015;
     }
     public static final class id {
-        public static final int A=0x7f080016;
-        public static final int B=0x7f08001a;
-        public static final int Bb=0x7f080018;
-        public static final int C=0x7f080004;
-        public static final int Chord=0x7f080001;
-        public static final int Cs=0x7f080006;
-        public static final int D=0x7f080008;
-        public static final int E=0x7f08000c;
-        public static final int Eb=0x7f08000a;
-        public static final int F=0x7f08000e;
-        public static final int Fs=0x7f080010;
-        public static final int G=0x7f080012;
-        public static final int Gs=0x7f080014;
-        public static final int action_settings=0x7f08001c;
-        public static final int airport_menuRefresh=0x7f08001d;
-        public static final int btnSetSoundGetChord=0x7f08001b;
+        public static final int Chord=0x7f080002;
+        public static final int action_settings=0x7f080004;
+        public static final int airport_menuRefresh=0x7f080005;
+        public static final int btnSetSoundGetChord=0x7f080003;
         public static final int mainLinearLayout=0x7f080000;
-        public static final int progressbartest=0x7f080002;
-        public static final int vertical_progressbarA=0x7f080015;
-        public static final int vertical_progressbarB=0x7f080019;
-        public static final int vertical_progressbarBb=0x7f080017;
-        public static final int vertical_progressbarC=0x7f080003;
-        public static final int vertical_progressbarCs=0x7f080005;
-        public static final int vertical_progressbarD=0x7f080007;
-        public static final int vertical_progressbarE=0x7f08000b;
-        public static final int vertical_progressbarEb=0x7f080009;
-        public static final int vertical_progressbarF=0x7f08000d;
-        public static final int vertical_progressbarFs=0x7f08000f;
-        public static final int vertical_progressbarG=0x7f080011;
-        public static final int vertical_progressbarGs=0x7f080013;
+        public static final int vertical_progressbarEnergy=0x7f080001;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;

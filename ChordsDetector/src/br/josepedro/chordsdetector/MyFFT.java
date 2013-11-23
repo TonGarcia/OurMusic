@@ -33,7 +33,7 @@ public class MyFFT {
 	private byte[] songInByte;
 	private float[] songInFloat;
 	private float energy;
-
+	
 	public MyFFT() {
 
 		// Preenchendo a matriz notas por 0's
@@ -1033,16 +1033,15 @@ public class MyFFT {
 			}
 		}
 
-		// Equalizando o som e calculando energia total 
+		// Equalizando o som e calculando energia total
 		float sum = 0;
 		for (int i = 0; i < songInFloat.length; i++) {
 			songInFloat[i] = songInFloat[i] / maxsongInFloat;
 			sum += (songInFloat[i] * songInFloat[i]);
 		}
-		this.energy = sum / songInFloat.length;
-		
-		
-		System.out.println("Energia total: " + sum);
+		this.energy = (sum / songInFloat.length);
+
+		System.out.println("Energia total: " + this.energy);
 
 		this.Som = songInFloat;
 

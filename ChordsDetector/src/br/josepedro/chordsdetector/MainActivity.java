@@ -48,25 +48,25 @@ public class MainActivity extends Activity {
 	private AudioRecord recorder = null;
 	private int bufferSize = 0;
 
-	private ProgressBar pbC;
-	private ProgressBar pbCs;
-	private ProgressBar pbD;
-	private ProgressBar pbEb;
-	private ProgressBar pbE;
-	private ProgressBar pbF;
-	private ProgressBar pbFs;
-	private ProgressBar pbG;
-	private ProgressBar pbGs;
-	private ProgressBar pbA;
-	private ProgressBar pbBb;
-	private ProgressBar pbB;
-	private ProgressBar[] barraCores;
+	// private ProgressBar pbC;
+	// private ProgressBar pbCs;
+	// private ProgressBar pbD;
+	// private ProgressBar pbEb;
+	// private ProgressBar pbE;
+	// private ProgressBar pbF;
+	// private ProgressBar pbFs;
+	// private ProgressBar pbG;
+	// private ProgressBar pbGs;
+	// private ProgressBar pbA;
+	// private ProgressBar pbBb;
+	// private ProgressBar pbB;
+	// private ProgressBar[] barraCores;
+
+	private ProgressBar pbEnergy;
 
 	private Drawable microphoneButton;
 
 	private Shader textGradient;
-
-	private ProgressBar playingBar;
 
 	// private static String[] notas = { "C", "C#", "D", "Eb", "E", "F", "F#",
 	// "G", "G#", "A", "Bb", "B" };
@@ -125,47 +125,46 @@ public class MainActivity extends Activity {
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
 		btnSetSoundGetChord.setOnClickListener(btnClick);
 
-		playingBar = (ProgressBar) this.findViewById(R.id.progressbartest);
-		playingBar.setVisibility(-1);
+		// barraCores = new ProgressBar[12];
 
-		barraCores = new ProgressBar[12];
+		// pbC = (ProgressBar) findViewById(R.id.vertical_progressbarC);
+		// pbC.setProgress(0);
+		// barraCores[0] = pbC;
+		// pbCs = (ProgressBar) findViewById(R.id.vertical_progressbarCs);
+		// pbCs.setProgress(0);
+		// barraCores[1] = pbCs;
+		// pbD = (ProgressBar) findViewById(R.id.vertical_progressbarD);
+		// pbD.setProgress(0);
+		// barraCores[2] = pbD;
+		// pbEb = (ProgressBar) findViewById(R.id.vertical_progressbarEb);
+		// pbEb.setProgress(0);
+		// barraCores[3] = pbEb;
+		// pbE = (ProgressBar) findViewById(R.id.vertical_progressbarE);
+		// pbE.setProgress(0);
+		// barraCores[4] = pbE;
+		// pbF = (ProgressBar) findViewById(R.id.vertical_progressbarF);
+		// pbF.setProgress(0);
+		// barraCores[5] = pbF;
+		// pbFs = (ProgressBar) findViewById(R.id.vertical_progressbarFs);
+		// pbFs.setProgress(0);
+		// barraCores[6] = pbFs;
+		// pbG = (ProgressBar) findViewById(R.id.vertical_progressbarG);
+		// pbG.setProgress(0);
+		// barraCores[7] = pbG;
+		// pbGs = (ProgressBar) findViewById(R.id.vertical_progressbarGs);
+		// pbGs.setProgress(0);
+		// barraCores[8] = pbGs;
+		// pbA = (ProgressBar) findViewById(R.id.vertical_progressbarA);
+		// pbA.setProgress(0);
+		// barraCores[9] = pbA;
+		// pbBb = (ProgressBar) findViewById(R.id.vertical_progressbarBb);
+		// pbBb.setProgress(0);
+		// barraCores[10] = pbBb;
+		// pbB = (ProgressBar) findViewById(R.id.vertical_progressbarB);
+		// pbB.setProgress(0);
+		// barraCores[11] = pbB;
 
-		pbC = (ProgressBar) findViewById(R.id.vertical_progressbarC);
-		pbC.setProgress(0);
-		barraCores[0] = pbC;
-		pbCs = (ProgressBar) findViewById(R.id.vertical_progressbarCs);
-		pbCs.setProgress(0);
-		barraCores[1] = pbCs;
-		pbD = (ProgressBar) findViewById(R.id.vertical_progressbarD);
-		pbD.setProgress(0);
-		barraCores[2] = pbD;
-		pbEb = (ProgressBar) findViewById(R.id.vertical_progressbarEb);
-		pbEb.setProgress(0);
-		barraCores[3] = pbEb;
-		pbE = (ProgressBar) findViewById(R.id.vertical_progressbarE);
-		pbE.setProgress(0);
-		barraCores[4] = pbE;
-		pbF = (ProgressBar) findViewById(R.id.vertical_progressbarF);
-		pbF.setProgress(0);
-		barraCores[5] = pbF;
-		pbFs = (ProgressBar) findViewById(R.id.vertical_progressbarFs);
-		pbFs.setProgress(0);
-		barraCores[6] = pbFs;
-		pbG = (ProgressBar) findViewById(R.id.vertical_progressbarG);
-		pbG.setProgress(0);
-		barraCores[7] = pbG;
-		pbGs = (ProgressBar) findViewById(R.id.vertical_progressbarGs);
-		pbGs.setProgress(0);
-		barraCores[8] = pbGs;
-		pbA = (ProgressBar) findViewById(R.id.vertical_progressbarA);
-		pbA.setProgress(0);
-		barraCores[9] = pbA;
-		pbBb = (ProgressBar) findViewById(R.id.vertical_progressbarBb);
-		pbBb.setProgress(0);
-		barraCores[10] = pbBb;
-		pbB = (ProgressBar) findViewById(R.id.vertical_progressbarB);
-		pbB.setProgress(0);
-		barraCores[11] = pbB;
+		pbEnergy = (ProgressBar) findViewById(R.id.vertical_progressbarEnergy);
 
 	}
 
@@ -215,7 +214,6 @@ public class MainActivity extends Activity {
 		started = false;
 		asyncTaskChords.cancel(true);
 		btnSetSoundGetChord.setImageDrawable(microphoneButton);
-		playingBar.setVisibility(-1);
 	}
 
 	public void playRecorders() {
@@ -225,7 +223,6 @@ public class MainActivity extends Activity {
 		asyncTaskChords = new RecordingAndSetChord();
 		asyncTaskChords.execute();
 		btnSetSoundGetChord.setImageResource(drawable.ic_media_pause);
-		playingBar.setVisibility(1);
 	}
 
 	private class RecordingAndSetChord extends AsyncTask<Void, byte[], Void> {
@@ -275,9 +272,7 @@ public class MainActivity extends Activity {
 				recorder.release();
 				recorder = null;
 
-				
 				publishProgress(baos.toByteArray());
-
 
 				try {
 
@@ -298,19 +293,22 @@ public class MainActivity extends Activity {
 			myfft.setByteArraySong(values[0]);
 			float[] S1 = myfft.getS1();
 			
+			float energy = myfft.getEnergy();
+			pbEnergy.setProgress((int) ((100*(energy/minEnergy))));
 			
-			if (myfft.getEnergy() > minEnergy) {
+			//0.4 = 80Db
+			if (energy > minEnergy) {
 				// Reordenando as notas nas barras de energia
 				float[] valores = new float[12];
 				for (int l = 0; l < S1.length; l++) {
 					valores[l] = S1[(l + 7) % S1.length];
 				}
 
-				System.out.println("---------------------");
-				for (int i = 0; i < 12; i++) {
-					int ampli = (int) ((int) 100 * valores[i]);
-					barraCores[i].setProgress(ampli);
-				}
+//				System.out.println("---------------------");
+//				for (int i = 0; i < 12; i++) {
+//					int ampli = (int) ((int) 100 * valores[i]);
+//					barraCores[i].setProgress(ampli);
+//				}
 
 				// Setando valores na tela
 				int numAcorde = myfft.getAcorde();

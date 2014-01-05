@@ -88,22 +88,22 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		this.optionsMenu = menu;
-		MenuInflater inflater = this.getMenuInflater();
-		inflater.inflate(R.menu.sound_recording_example2, menu);
+//		this.optionsMenu = menu;
+//		MenuInflater inflater = this.getMenuInflater();
+//		inflater.inflate(R.menu.sound_recording_example2, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.airport_menuRefresh:
-			MenuItem refreshItem = optionsMenu
-					.findItem(R.id.airport_menuRefresh);
-			refreshItem.setActionView(R.layout.actionbar);
-			// Complete with your code
-			return true;
-		}
+//		switch (item.getItemId()) {
+//		case R.id.airport_menuRefresh:
+//			MenuItem refreshItem = optionsMenu
+//					.findItem(R.id.airport_menuRefresh);
+//			refreshItem.setActionView(R.layout.actionbar);
+//			// Complete with your code
+//			return true;
+//		}
 		return super.onOptionsItemSelected(item);
 	}
 

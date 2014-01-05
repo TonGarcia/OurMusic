@@ -11,7 +11,7 @@
     </uses-permission>
 
     <application
-        android:icon="@drawable/guitar_full"
+        android:icon="@drawable/app_icon1png"
         android:label="@string/chords_detector"
         android:theme="@style/AppTheme" >
         
